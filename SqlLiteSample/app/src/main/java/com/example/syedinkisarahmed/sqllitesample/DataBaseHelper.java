@@ -27,7 +27,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
     public boolean insertData(String name,String fname, int marks){
-        SQLiteDatabase db = this.getReadableDatabase();
+        
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cont = new ContentValues();
         cont.put("NAME",name);
         cont.put("FATHERNAME",fname);
@@ -39,7 +40,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return true;
     }
     public Cursor readData(){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select * from "+table_Name,null);
         return res;
     }
